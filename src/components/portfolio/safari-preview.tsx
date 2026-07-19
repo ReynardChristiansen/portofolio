@@ -4,10 +4,11 @@ import { motion } from "motion/react"
 import { ExternalLink, Lock, RotateCw } from "lucide-react"
 import { SiGithub } from "react-icons/si"
 
-import type { Project } from "@/lib/portfolio-data"
+import type { ResolvedProject } from "@/config/site"
+import { useContent } from "@/i18n/context"
 
 interface SafariPreviewProps {
-  project: Project | null
+  project: ResolvedProject | null
   onClose: () => void
 }
 
@@ -20,6 +21,8 @@ export function SafariPreview({ project, onClose }: SafariPreviewProps) {
   const windowRef = useRef<HTMLDivElement>(null)
   const [reloadKey, setReloadKey] = useState(0)
   const [isFullscreen, setIsFullscreen] = useState(false)
+  const t = useContent()
+  const w = t.projects.window
 
   useEffect(() => {
     if (!project) return
@@ -99,7 +102,7 @@ export function SafariPreview({ project, onClose }: SafariPreviewProps) {
             <button
               type="button"
               onClick={handleClose}
-              aria-label="Close preview"
+              aria-label={w.close}
               className="flex size-3.5 items-center justify-center rounded-full bg-[#ff5f57]"
             >
               <svg
@@ -119,7 +122,7 @@ export function SafariPreview({ project, onClose }: SafariPreviewProps) {
             <button
               type="button"
               onClick={handleClose}
-              aria-label="Minimize preview"
+              aria-label={w.minimize}
               className="flex size-3.5 items-center justify-center rounded-full bg-[#febc2e]"
             >
               <svg
@@ -139,7 +142,7 @@ export function SafariPreview({ project, onClose }: SafariPreviewProps) {
             <button
               type="button"
               onClick={toggleFullscreen}
-              aria-label={isFullscreen ? "Exit fullscreen" : "Maximize (fullscreen)"}
+              aria-label={isFullscreen ? w.exitFullscreen : w.maximize}
               className="flex size-3.5 items-center justify-center rounded-full bg-[#28c840]"
             >
               <svg
@@ -163,8 +166,8 @@ export function SafariPreview({ project, onClose }: SafariPreviewProps) {
               <button
                 type="button"
                 onClick={() => setReloadKey((k) => k + 1)}
-                aria-label="Refresh"
-                title="Refresh"
+                aria-label={w.refresh}
+                title={w.refresh}
                 className="-my-0.5 shrink-0 rounded p-1 text-neutral-500 transition-colors hover:text-black dark:text-neutral-400 dark:hover:text-white"
               >
                 <RotateCw className="size-3.5" />
@@ -177,8 +180,8 @@ export function SafariPreview({ project, onClose }: SafariPreviewProps) {
               href={address}
               target="_blank"
               rel="noreferrer noopener"
-              aria-label="Open in a new tab"
-              title="Open in a new tab"
+              aria-label={w.openInNewTab}
+              title={w.openInNewTab}
               className={iconBtn}
             >
               <ExternalLink className="size-4" />
@@ -205,8 +208,7 @@ export function SafariPreview({ project, onClose }: SafariPreviewProps) {
                 className="max-h-[55%] rounded-lg border border-black/10 object-contain shadow-lg dark:border-white/10"
               />
               <p className="max-w-md text-sm text-neutral-500 dark:text-neutral-400">
-                {project.title} is a mobile app (built with Expo), so there&rsquo;s no
-                web demo to embed here. You can explore the source on GitHub.
+                {w.noWebDemo(project.title)}
               </p>
               <a
                 href={project.repoUrl}
@@ -214,7 +216,7 @@ export function SafariPreview({ project, onClose }: SafariPreviewProps) {
                 rel="noreferrer noopener"
                 className="inline-flex items-center gap-2 rounded-full border border-black/15 px-4 py-2 text-sm font-medium text-black transition-colors hover:bg-black/5 dark:border-white/15 dark:text-white dark:hover:bg-white/10"
               >
-                <SiGithub className="size-4" /> View on GitHub
+                <SiGithub className="size-4" /> {w.viewOnGithub}
               </a>
             </div>
           )}

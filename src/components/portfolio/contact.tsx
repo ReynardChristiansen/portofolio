@@ -5,9 +5,12 @@ import { SiGmail } from "react-icons/si"
 import { Button } from "@/components/ui/button"
 import { Reveal } from "@/components/portfolio/reveal"
 import { TiltCard } from "@/components/portfolio/tilt-card"
-import { profile, socials } from "@/lib/portfolio-data"
+import { site, socials } from "@/config/site"
+import { useContent } from "@/i18n/context"
 
 export function Contact() {
+  const t = useContent()
+
   return (
     <section id="contact" className="scroll-mt-24 px-6 py-24 sm:py-32">
       <Reveal>
@@ -16,14 +19,13 @@ export function Contact() {
           className="relative mx-auto max-w-3xl overflow-hidden rounded-3xl border border-foreground/20 bg-card/40 px-6 py-16 text-center backdrop-blur-[2px]"
         >
           <p className="text-sm font-medium uppercase tracking-widest text-primary">
-            Contact
+            {t.contact.eyebrow}
           </p>
           <h2 className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">
-            Get in touch
+            {t.contact.heading}
           </h2>
           <p className="mx-auto mt-4 max-w-md text-muted-foreground">
-            I&rsquo;m open to new opportunities and collaborations. Feel free to
-            reach out.
+            {t.contact.subtitle}
           </p>
 
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
@@ -32,8 +34,8 @@ export function Contact() {
               size="lg"
               className="h-12 rounded-full px-7 text-base shadow-lg shadow-primary/10 transition-colors duration-300 hover:bg-[#EA4335] hover:text-white"
             >
-              <a href={`mailto:${profile.email}`}>
-                <SiGmail className="size-4" /> {profile.email}
+              <a href={`mailto:${site.email}`}>
+                <SiGmail className="size-4" /> {site.email}
               </a>
             </Button>
           </div>
@@ -59,7 +61,7 @@ export function Contact() {
 
       <footer className="mx-auto mt-16 max-w-5xl border-t border-border/60 pt-8 text-center text-sm text-muted-foreground">
         <p>
-          © {profile.name} {new Date().getFullYear()}. All rights reserved.
+          © {site.name} {new Date().getFullYear()}. {t.contact.rights}
         </p>
       </footer>
     </section>

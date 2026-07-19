@@ -15,20 +15,36 @@ import {
   SiGithub,
 } from "react-icons/si"
 import { FaLinkedinIn } from "react-icons/fa6"
+
 import profilePic from "@/assets/profile-pic.jpg"
 import cvFile from "@/assets/Reynard_Christiansen_CV.pdf"
 
-/* ------------------------------------------------------------------ */
-/*  Replace the values below with your own data.                     */
-/* ------------------------------------------------------------------ */
+/* ================================================================== */
+/*  SITE CONFIG — the single source of truth for everything that is    */
+/*  NOT translatable text (identity, files, links, icons, colors).     */
+/*                                                                     */
+/*  Translatable copy (headings, paragraphs, project titles, …) lives  */
+/*  in src/i18n/locales/<lang>.ts instead. Change data here once and   */
+/*  it updates across the whole site + every language.                 */
+/* ================================================================== */
 
-export const profile = {
+export const site = {
   firstName: "Reynard",
   lastName: "Christiansen",
   name: "Reynard Christiansen",
-  /** Small greeting above the name (any language works). */
-  greeting: "안녕하세요, 저는",
-  /** Greetings looped with the typing effect. Add/remove as you like. */
+  email: "reynard.satria@gmail.com",
+  location: "Indonesia",
+  /** CV file from src/assets. Swap the import above to replace it. */
+  resumeUrl: cvFile,
+  /** Filename used when the CV is downloaded (download attribute). */
+  cvDownloadName: "Reynard_Christiansen_CV.pdf",
+  /** Profile photo from src/assets. Swap the import above to replace it. */
+  avatarUrl: profilePic,
+  /**
+   * Multilingual greetings cycled by the hero typing animation. These are
+   * intentionally in many languages at once (a visual flourish) and are
+   * independent of the active UI language.
+   */
   greetings: [
     "안녕하세요, 저는", // Korean
     "Halo, saya", // Indonesian
@@ -41,18 +57,11 @@ export const profile = {
     "Ciao, sono", // Italian
     "Olá, eu sou", // Portuguese
   ],
-  role: "Full Stack Developer",
-  tagline:
-    "I build mobile and web, turning ideas into clean, reliable products.",
-  location: "Indonesia",
-  email: "reynard.satria@gmail.com",
-  /** CV file from src/assets. Replace the file or import a different one above. */
-  resumeUrl: cvFile,
-  /** Nama file saat CV diunduh (atribut download di tombol). */
-  cvDownloadName: "Reynard_Christiansen_CV.pdf",
-  /** Profile photo from src/assets. Replace the file or import a different one above. */
-  avatarUrl: profilePic,
 }
+
+/* ------------------------------------------------------------------ */
+/*  Skills                                                             */
+/* ------------------------------------------------------------------ */
 
 /** A single hex, or a per-theme pair for monochrome brands (e.g. Next.js). */
 export type BrandColor = string | { light: string; dark: string }
@@ -79,72 +88,96 @@ export const skills: Skill[] = [
   { name: "Git", icon: SiGit, color: "#F05032" },
 ]
 
-export type Project = {
-  title: string
-  description: string
-  tags: string[]
+/* ------------------------------------------------------------------ */
+/*  About — stats (values here, labels in the locale files)           */
+/* ------------------------------------------------------------------ */
+
+export const statKeys = ["experience", "projects"] as const
+export type StatKey = (typeof statKeys)[number]
+
+export const stats: { key: StatKey; value: string }[] = [
+  { key: "experience", value: "2+" },
+  { key: "projects", value: "10+" },
+]
+
+/* ------------------------------------------------------------------ */
+/*  Projects (title + description live in the locale files, keyed by  */
+/*  the id below)                                                      */
+/* ------------------------------------------------------------------ */
+
+export const projectIds = [
+  "hirmify",
+  "renime",
+  "inkling",
+  "hypersnake",
+  "bricks",
+  "cooknow",
+] as const
+export type ProjectId = (typeof projectIds)[number]
+
+export type ProjectConfig = {
+  id: ProjectId
   /** Cover image in /public/projects. */
   cover: string
+  tags: string[]
   /** Live demo URL — embedded in the Safari preview. Omit if there is none. */
   liveUrl?: string
   repoUrl: string
 }
 
-export const projects: Project[] = [
+/** A project config merged with its translated title + description. */
+export type ResolvedProject = ProjectConfig & {
+  title: string
+  description: string
+}
+
+export const projects: ProjectConfig[] = [
   {
-    title: "Hirmify",
-    description:
-      "A music streaming web app — stream songs, follow artists, and build your library. Installable PWA with lock-screen media controls.",
+    id: "hirmify",
     tags: ["React", "Vite", "Tailwind", "PWA"],
     cover: "/projects/hirmify.png",
     liveUrl: "https://hirmify.vercel.app/",
     repoUrl: "https://github.com/ReynardChristiansen/Spotify_Clone_v3",
   },
   {
-    title: "Renime",
-    description:
-      "A mobile anime app — explore popular titles, watch episodes, search, and save your favorites for later. Built with Expo.",
+    id: "renime",
     tags: ["React Native", "Expo", "JavaScript"],
     cover: "/projects/renime.png",
     repoUrl: "https://github.com/ReynardChristiansen/Anime_Clone",
   },
   {
-    title: "Inkling",
-    description:
-      "Draw something and an AI guesses it out loud — real-time sketch recognition in the browser with TensorFlow.js (DoodleNet).",
+    id: "inkling",
     tags: ["React", "TensorFlow.js", "Vite"],
     cover: "/projects/inkling.png",
     liveUrl: "https://draw-ai-three.vercel.app/",
     repoUrl: "https://github.com/ReynardChristiansen/draw_ai",
   },
   {
-    title: "Hyper Snake",
-    description:
-      "The classic Snake game rebuilt with vanilla HTML, CSS & JavaScript. Plays with keyboard or touch, right in the browser.",
+    id: "hypersnake",
     tags: ["JavaScript", "HTML", "CSS", "Canvas"],
     cover: "/projects/hypersnake.png",
     liveUrl: "https://reynardchristiansen.github.io/",
     repoUrl: "https://github.com/ReynardChristiansen/ReynardChristiansen.github.io",
   },
   {
-    title: "Break the Bricks",
-    description:
-      "A brick-breaker game across three levels with paddle control, ball trail, particles, sound, and a bonus-ball combo mechanic.",
+    id: "bricks",
     tags: ["JavaScript", "HTML", "CSS", "Canvas"],
     cover: "/projects/bricks.png",
     liveUrl: "https://reynardchristiansen.github.io/Bricks_Game/",
     repoUrl: "https://github.com/ReynardChristiansen/Bricks_Game",
   },
   {
-    title: "CookNow",
-    description:
-      "Tell CookNow what's in your kitchen and it finds recipes you can cook right now — ranked by ingredient match, works offline.",
+    id: "cooknow",
     tags: ["React", "TypeScript", "Tailwind", "PWA"],
     cover: "/projects/cooknow.png",
     liveUrl: "https://cook-now-pi.vercel.app/",
     repoUrl: "https://github.com/ReynardChristiansen/cookNow",
   },
 ]
+
+/* ------------------------------------------------------------------ */
+/*  Social links                                                      */
+/* ------------------------------------------------------------------ */
 
 export type SocialLink = {
   label: string
@@ -156,5 +189,10 @@ export type SocialLink = {
 
 export const socials: SocialLink[] = [
   { label: "GitHub", href: "https://github.com/ReynardChristiansen", icon: SiGithub },
-  { label: "LinkedIn", href: "https://www.linkedin.com/in/reynard-christiansen-959b96251/", icon: FaLinkedinIn, color: "#0A66C2" },
+  {
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/in/reynard-christiansen-959b96251/",
+    icon: FaLinkedinIn,
+    color: "#0A66C2",
+  },
 ]

@@ -4,7 +4,8 @@ import { FlickeringGrid } from "@/components/ui/flickering-grid"
 import { Marquee } from "@/components/ui/marquee"
 import { Reveal } from "@/components/portfolio/reveal"
 import { useIsDark } from "@/hooks/use-is-dark"
-import { skills } from "@/lib/portfolio-data"
+import { skills } from "@/config/site"
+import { useContent } from "@/i18n/context"
 
 type Skill = (typeof skills)[number]
 
@@ -56,6 +57,7 @@ function SkillCard({
 
 export function Skills() {
   const isDark = useIsDark()
+  const t = useContent()
   const firstRow = skills.slice(0, Math.ceil(skills.length / 2))
   const secondRow = skills.slice(Math.ceil(skills.length / 2))
 
@@ -64,13 +66,13 @@ export function Skills() {
       <Reveal>
         <div className="mx-auto mb-14 max-w-2xl px-6 text-center">
           <p className="text-sm font-medium uppercase tracking-widest text-primary">
-            Tech Stack
+            {t.skills.eyebrow}
           </p>
           <h2 className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">
-            Skills &amp; Tools
+            {t.skills.heading}
           </h2>
           <p className="mt-4 text-muted-foreground">
-            The technologies I use day to day to build products.
+            {t.skills.subtitle}
           </p>
         </div>
       </Reveal>

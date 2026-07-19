@@ -11,10 +11,12 @@ import { AuroraText } from "@/components/ui/aurora-text"
 import { TypingAnimation } from "@/components/ui/typing-animation"
 import { Button } from "@/components/ui/button"
 import { useIsDark } from "@/hooks/use-is-dark"
-import { profile, socials } from "@/lib/portfolio-data"
+import { site, socials } from "@/config/site"
+import { useContent } from "@/i18n/context"
 
 export function Hero() {
   const isDark = useIsDark()
+  const t = useContent()
 
   // Monochrome aurora palette, theme-aware so the name stays readable in both modes.
   // More stops + a symmetric ramp = smoother, seamless shimmer.
@@ -47,28 +49,28 @@ export function Hero() {
         {/* Left: text */}
         <div className="flex flex-col items-start text-left">
           <p className="flex min-h-[1.75rem] items-center text-lg text-muted-foreground sm:min-h-8 sm:text-xl">
-            <TypingAnimation texts={profile.greetings} />
+            <TypingAnimation texts={site.greetings} />
           </p>
 
           <h1 className="mt-3 text-5xl font-bold leading-[1.05] tracking-tight sm:text-6xl lg:text-7xl">
             <span className="block">
               <AuroraText colors={nameColors} speed={2}>
-                {profile.firstName}
+                {site.firstName}
               </AuroraText>
             </span>
             <span className="block">
               <AuroraText colors={nameColors} speed={2}>
-                {profile.lastName}
+                {site.lastName}
               </AuroraText>
             </span>
           </h1>
 
           <p className="mt-6 text-2xl font-semibold text-foreground/90 sm:text-3xl">
-            {profile.role}
+            {t.hero.role}
           </p>
 
           <p className="mt-4 max-w-md text-base text-muted-foreground sm:text-lg">
-            {profile.tagline}
+            {t.hero.tagline}
           </p>
 
           <div className="mt-8 flex flex-wrap items-center gap-3">
@@ -78,9 +80,9 @@ export function Hero() {
               variant="outline"
               className="h-12 rounded-full border-border/60 bg-foreground/5 px-7 text-base text-foreground backdrop-blur-md transition-all duration-300 hover:bg-foreground/10 dark:bg-foreground/5 dark:hover:bg-foreground/10"
             >
-              <a href={profile.resumeUrl} download={profile.cvDownloadName}>
+              <a href={site.resumeUrl} download={site.cvDownloadName}>
                 <FaDownload className="size-4 transition-colors duration-300 group-hover/button:text-[#22c55e]" />{" "}
-                Download CV
+                {t.hero.downloadCv}
               </a>
             </Button>
             <Button
@@ -91,7 +93,7 @@ export function Hero() {
             >
               <a href="#contact">
                 <SiGmail className="size-4 transition-colors duration-300 group-hover/button:text-[#EA4335]" />{" "}
-                Contact Me
+                {t.hero.contactMe}
               </a>
             </Button>
           </div>
@@ -120,8 +122,8 @@ export function Hero() {
             {/* Round photo + animated shine border */}
             <div className="relative size-72 overflow-hidden rounded-full sm:size-80 lg:size-[26rem]">
               <PixelImage
-                src={profile.avatarUrl}
-                alt={profile.name}
+                src={site.avatarUrl}
+                alt={site.name}
                 grid="8x8"
                 grayscaleAnimation={false}
                 className="grayscale"
@@ -141,7 +143,7 @@ export function Hero() {
 
       <a
         href="#about"
-        aria-label="Scroll to about"
+        aria-label={t.hero.scrollToAbout}
         className="absolute bottom-24 left-1/2 z-10 hidden -translate-x-1/2 text-muted-foreground/70 transition-colors hover:text-foreground sm:block"
       >
         <ArrowDown className="size-5 animate-bounce" />
