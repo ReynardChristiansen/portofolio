@@ -45,7 +45,7 @@ export const profile = {
   tagline:
     "I build mobile and web, turning ideas into clean, reliable products.",
   location: "Indonesia",
-  email: "orangmap@gmail.com",
+  email: "reynard.satria@gmail.com",
   /** CV file from src/assets. Replace the file or import a different one above. */
   resumeUrl: cvFile,
   /** Nama file saat CV diunduh (atribut download di tombol). */

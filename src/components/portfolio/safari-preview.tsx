@@ -107,7 +107,7 @@ export function SafariPreview({ project, onClose }: SafariPreviewProps) {
                 className="size-2.5 text-black/60 opacity-0 transition-opacity group-hover/lights:opacity-100"
               >
                 <path
-                  d="M2.1 2.1 L7.9 7.9 M7.9 2.1 L2.1 7.9"
+                  d="M2 2 L8 8 M8 2 L2 8"
                   stroke="currentColor"
                   strokeWidth="1.8"
                   strokeLinecap="round"
@@ -127,9 +127,9 @@ export function SafariPreview({ project, onClose }: SafariPreviewProps) {
                 className="size-2.5 text-black/60 opacity-0 transition-opacity group-hover/lights:opacity-100"
               >
                 <path
-                  d="M1.6 5 H8.4"
+                  d="M2 5 H8"
                   stroke="currentColor"
-                  strokeWidth="1.9"
+                  strokeWidth="1.8"
                   strokeLinecap="round"
                 />
               </svg>
@@ -143,25 +143,14 @@ export function SafariPreview({ project, onClose }: SafariPreviewProps) {
               className="flex size-3.5 items-center justify-center rounded-full bg-[#28c840]"
             >
               <svg
-                viewBox="0 0 12 12"
+                viewBox="0 0 10 10"
                 fill="none"
                 stroke="currentColor"
-                strokeWidth="1.7"
+                strokeWidth="1.8"
                 strokeLinecap="round"
-                strokeLinejoin="round"
                 className="size-2.5 text-black/70 opacity-0 transition-opacity group-hover/lights:opacity-100"
               >
-                {isFullscreen ? (
-                  <>
-                    <path d="M5 2.5 V5 H2.5" />
-                    <path d="M7 9.5 V7 H9.5" />
-                  </>
-                ) : (
-                  <>
-                    <path d="M2.5 5 V2.5 H5" />
-                    <path d="M9.5 7 V9.5 H7" />
-                  </>
-                )}
+                <path d="M5 2 V8 M2 5 H8" />
               </svg>
             </button>
           </div>

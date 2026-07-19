@@ -1,4 +1,5 @@
 import { useCallback, useState } from "react"
+import { motion } from "motion/react"
 import { ExternalLink, Play } from "lucide-react"
 import { SiGithub } from "react-icons/si"
 
@@ -33,25 +34,43 @@ export function Projects() {
             <Reveal key={project.title} delay={i * 0.08}>
               <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-foreground/20 bg-card/40 backdrop-blur-[2px] transition-all duration-300 hover:-translate-y-1 hover:border-primary/50 hover:shadow-lg hover:shadow-primary/5">
                 {/* Cover — click to open the Safari preview */}
-                <button
+                <motion.button
                   type="button"
                   onClick={() => setActive(project)}
                   aria-label={`Preview ${project.title}`}
+                  initial="rest"
+                  animate="rest"
+                  whileHover="hover"
+                  whileTap={{ scale: 0.985 }}
                   className="relative block aspect-video w-full overflow-hidden border-b border-foreground/10"
                 >
-                  <img
+                  <motion.img
                     src={project.cover}
                     alt={project.title}
                     loading="lazy"
-                    className="size-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    variants={{ rest: { scale: 1 }, hover: { scale: 1.06 } }}
+                    transition={{ duration: 0.5, ease: "easeOut" }}
+                    className="size-full object-cover"
                   />
-                  <div className="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                    <span className="flex items-center gap-2 rounded-full bg-white/90 px-4 py-2 text-sm font-medium text-black">
+                  {/* Centering container for the pill — no dark scrim */}
+                  <span
+                    aria-hidden
+                    className="pointer-events-none absolute inset-0 flex items-center justify-center"
+                  >
+                    {/* Preview pill — pops up with a spring */}
+                    <motion.span
+                      variants={{
+                        rest: { opacity: 0, y: 12, scale: 0.85 },
+                        hover: { opacity: 1, y: 0, scale: 1 },
+                      }}
+                      transition={{ type: "spring", stiffness: 420, damping: 20, delay: 0.04 }}
+                      className="flex items-center gap-2 rounded-full bg-white/90 px-4 py-2 text-sm font-medium text-black shadow-lg shadow-black/20"
+                    >
                       <Play className="size-4 fill-black" />
                       {project.liveUrl ? "Live Preview" : "Preview"}
-                    </span>
-                  </div>
-                </button>
+                    </motion.span>
+                  </span>
+                </motion.button>
 
                 {/* Content */}
                 <div className="flex flex-1 flex-col p-6">
