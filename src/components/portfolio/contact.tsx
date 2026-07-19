@@ -15,10 +15,6 @@ export function Contact() {
           max={6}
           className="relative mx-auto max-w-3xl overflow-hidden rounded-3xl border border-foreground/20 bg-card/40 px-6 py-16 text-center backdrop-blur-[2px]"
         >
-          <div
-            aria-hidden
-            className="absolute left-1/2 top-0 -z-10 h-64 w-64 -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/10 blur-3xl"
-          />
           <p className="text-sm font-medium uppercase tracking-widest text-primary">
             Contact
           </p>
