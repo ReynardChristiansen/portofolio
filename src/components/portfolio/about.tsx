@@ -1,9 +1,8 @@
 import { Reveal } from "@/components/portfolio/reveal"
 
 const stats = [
-  { value: "5+", label: "Years of experience" },
-  { value: "30+", label: "Projects completed" },
-  { value: "∞", label: "Curiosity" },
+  { value: "2+", label: "Years of experience" },
+  { value: "10+", label: "Projects completed" },
 ]
 
 export function About() {
@@ -16,34 +15,30 @@ export function About() {
               About
             </p>
             <h2 className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">
-              A software engineer who sweats the details
+              My background
             </h2>
-            <div className="mt-6 space-y-4 text-muted-foreground">
+            <div className="mt-6 max-w-md space-y-4 text-base leading-relaxed text-muted-foreground">
               <p>
-                I am enthusiastic about utilizing my academic background, coupled
-                with my real-world experience, to forge a career in software
-                engineering.
-              </p>
-              <p>
-                As I set out on this journey, I eagerly look forward to connecting
-                with like-minded professionals, exchanging insights, and
-                participating in projects that promote positive change.
+                I build scalable web and mobile applications, delivering
+                end-to-end solutions from frontend interfaces to backend
+                systems. I&rsquo;m passionate about creating impactful products,
+                improving the user experience, and continuously learning new
+                technologies.
               </p>
             </div>
           </div>
         </Reveal>
 
         <Reveal delay={0.1}>
-          <div className="grid grid-cols-3 gap-4">
+          <div className="flex divide-x divide-border/60 overflow-hidden rounded-2xl border border-foreground/20 bg-card/40 backdrop-blur-[2px] transition-all duration-300 hover:border-primary/50 hover:shadow-lg hover:shadow-primary/5">
             {stats.map((stat) => (
-              <div
-                key={stat.label}
-                className="rounded-2xl border border-foreground/20 bg-card/40 p-5 text-center backdrop-blur-[2px] transition-all duration-300 hover:-translate-y-1 hover:border-primary/50 hover:shadow-lg hover:shadow-primary/5"
-              >
-                <div className="text-3xl font-semibold tracking-tight">
+              <div key={stat.label} className="flex-1 px-4 py-9 text-center">
+                <div className="text-4xl font-semibold tracking-tight tabular-nums sm:text-5xl">
                   {stat.value}
                 </div>
-                <div className="mt-1 text-xs text-muted-foreground">{stat.label}</div>
+                <div className="mt-2 text-xs text-muted-foreground">
+                  {stat.label}
+                </div>
               </div>
             ))}
           </div>

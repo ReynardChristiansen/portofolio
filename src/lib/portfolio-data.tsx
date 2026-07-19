@@ -43,7 +43,7 @@ export const profile = {
   ],
   role: "Full Stack Developer",
   tagline:
-    "I build web, mobile and real-time applications — turning ideas into clean, reliable products end to end.",
+    "I build mobile and web, turning ideas into clean, reliable products.",
   location: "Indonesia",
   email: "orangmap@gmail.com",
   /** CV file from src/assets. Replace the file or import a different one above. */
@@ -83,33 +83,66 @@ export type Project = {
   title: string
   description: string
   tags: string[]
+  /** Cover image in /public/projects. */
+  cover: string
+  /** Live demo URL — embedded in the Safari preview. Omit if there is none. */
   liveUrl?: string
-  repoUrl?: string
+  repoUrl: string
 }
 
 export const projects: Project[] = [
   {
-    title: "Realtime Analytics Dashboard",
+    title: "Hirmify",
     description:
-      "Analytics dashboard with realtime charts, advanced filters, and dark mode. Built to monitor thousands of events per second.",
-    tags: ["React", "TypeScript", "WebSocket", "Tailwind"],
-    liveUrl: "#",
-    repoUrl: "#",
+      "A music streaming web app — stream songs, follow artists, and build your library. Installable PWA with lock-screen media controls.",
+    tags: ["React", "Vite", "Tailwind", "PWA"],
+    cover: "/projects/hirmify.png",
+    liveUrl: "https://hirmify.vercel.app/",
+    repoUrl: "https://github.com/ReynardChristiansen/Spotify_Clone_v3",
   },
   {
-    title: "AI Content Studio",
+    title: "Renime",
     description:
-      "LLM-powered content generation app with a collaborative editor, version history, and multi-format export.",
-    tags: ["Next.js", "Node.js", "PostgreSQL", "OpenAI"],
-    liveUrl: "#",
-    repoUrl: "#",
+      "A mobile anime app — explore popular titles, watch episodes, search, and save your favorites for later. Built with Expo.",
+    tags: ["React Native", "Expo", "JavaScript"],
+    cover: "/projects/renime.png",
+    repoUrl: "https://github.com/ReynardChristiansen/Anime_Clone",
   },
   {
-    title: "DevOps Toolkit CLI",
+    title: "Inkling",
     description:
-      "CLI for deploy automation, environment management, and container monitoring — cutting release time by up to 60%.",
-    tags: ["Python", "Docker", "CI/CD"],
-    repoUrl: "#",
+      "Draw something and an AI guesses it out loud — real-time sketch recognition in the browser with TensorFlow.js (DoodleNet).",
+    tags: ["React", "TensorFlow.js", "Vite"],
+    cover: "/projects/inkling.png",
+    liveUrl: "https://draw-ai-three.vercel.app/",
+    repoUrl: "https://github.com/ReynardChristiansen/draw_ai",
+  },
+  {
+    title: "Hyper Snake",
+    description:
+      "The classic Snake game rebuilt with vanilla HTML, CSS & JavaScript. Plays with keyboard or touch, right in the browser.",
+    tags: ["JavaScript", "HTML", "CSS", "Canvas"],
+    cover: "/projects/hypersnake.png",
+    liveUrl: "https://reynardchristiansen.github.io/",
+    repoUrl: "https://github.com/ReynardChristiansen/ReynardChristiansen.github.io",
+  },
+  {
+    title: "Break the Bricks",
+    description:
+      "A brick-breaker game across three levels with paddle control, ball trail, particles, sound, and a bonus-ball combo mechanic.",
+    tags: ["JavaScript", "HTML", "CSS", "Canvas"],
+    cover: "/projects/bricks.png",
+    liveUrl: "https://reynardchristiansen.github.io/Bricks_Game/",
+    repoUrl: "https://github.com/ReynardChristiansen/Bricks_Game",
+  },
+  {
+    title: "CookNow",
+    description:
+      "Tell CookNow what's in your kitchen and it finds recipes you can cook right now — ranked by ingredient match, works offline.",
+    tags: ["React", "TypeScript", "Tailwind", "PWA"],
+    cover: "/projects/cooknow.png",
+    liveUrl: "https://cook-now-pi.vercel.app/",
+    repoUrl: "https://github.com/ReynardChristiansen/cookNow",
   },
 ]
 
